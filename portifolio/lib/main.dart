@@ -4,6 +4,7 @@ import 'screens/home_screen.dart';
 import 'screens/services_screen.dart';
 import 'screens/projects_screen.dart';
 import 'screens/contact_screen.dart';
+import 'screens/experience_screen.dart'; // ✅ Add this import
 
 void main() {
   runApp(const PortfolioApp());
@@ -38,11 +39,12 @@ class _MainNavigationState extends State<MainNavigation> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  final List<Widget> _pages = const [
-    HomeScreen(),
-    ServicesScreen(),
-    ProjectsScreen(),
-    ContactScreen(),
+  final List<Widget> _pages = [
+    const HomeScreen(),
+    const ServicesScreen(),
+    const ProjectsScreen(),
+    const ExperienceScreen(), // ✅ Fixed spelling: ExperienceScreen not ExperianceScreen
+    const ContactScreen(),
   ];
 
   @override
@@ -81,14 +83,15 @@ class _MainNavigationState extends State<MainNavigation> {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10), // ✅ Reduced padding for 5 items
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildNavItem(Icons.home, 'Home', 0),
               _buildNavItem(Icons.work, 'Services', 1),
               _buildNavItem(Icons.folder, 'Projects', 2),
-              _buildNavItem(Icons.contact_mail, 'Contact', 3),
+              _buildNavItem(Icons.timeline, 'Experience', 3), // ✅ Changed icon to timeline
+              _buildNavItem(Icons.contact_mail, 'Contact', 4),
             ],
           ),
         ),
@@ -112,14 +115,14 @@ class _MainNavigationState extends State<MainNavigation> {
           Icon(
             icon,
             color: isActive ? const Color(0xFF2D9596) : Colors.grey,
-            size: 28,
+            size: 24, // ✅ Slightly smaller icons for 5 items
           ),
           const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
               color: isActive ? const Color(0xFF2D9596) : Colors.grey,
-              fontSize: 12,
+              fontSize: 10, // ✅ Smaller font size for 5 items
               fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
             ),
           ),
